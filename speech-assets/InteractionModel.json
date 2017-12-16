@@ -1,0 +1,80 @@
+{
+  "languageModel": {
+    "intents": [
+      {
+        "name": "AMAZON.CancelIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.HelpIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.StopIntent",
+        "samples": []
+      },
+      {
+        "name": "GeburtstagCountdownIntent",
+        "samples": [
+          "Ich habe am {birthday} Geburtstag",
+          "Am {birthday} wurde ich geboren",
+          "{birthday} ist mein Geburtstag",
+          "Ich habe {birthday} Geburtstag",
+          "Ich wurde am {birthday} geboren",
+          "Mein Geburtstag ist am {birthday}",
+          "Mein Geburtstag ist der {birthday}",
+          "Am {birthday}"
+        ],
+        "slots": [
+          {
+            "name": "birthday",
+            "type": "AMAZON.DATE",
+            "samples": [
+              "Mein Geburtstag ist am {birthday}",
+              "Ich habe am {birthday} Geburtstag",
+              "Geboren wurde ich am {birthday}",
+              "Ich habe {birthday} Geburtstag"
+            ]
+          }
+        ]
+      }
+    ],
+    "invocationName": "geburtstags countdown"
+  },
+  "prompts": [
+    {
+      "id": "Elicit.Intent-GeburtstagCountdownIntent.IntentSlot-birthday",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Wann wurdest du geboren?"
+        },
+        {
+          "type": "PlainText",
+          "value": "Wann ist dein Geburtstag?"
+        }
+      ]
+    }
+  ],
+  "dialog": {
+    "intents": [
+      {
+        "name": "GeburtstagCountdownIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "birthday",
+            "type": "AMAZON.DATE",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicitation":
+                "Elicit.Intent-GeburtstagCountdownIntent.IntentSlot-birthday"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
